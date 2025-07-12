@@ -4,26 +4,28 @@ import { useEffect, useRef, useState } from 'react';
 
 export function useIntersectionObserver<T extends HTMLElement = HTMLElement>(options = {}) {
   const [isIntersecting, setIsIntersecting] = useState(false);
-  const [hasIntersected, setHasIntersected] = useState(false);
   const elementRef = useRef<T>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const hasTriggeredRef = useRef(false);
 
   useEffect(() => {
     const element = elementRef.current;
-    if (!element) return;
+    if (!element || hasTriggeredRef.current) return;
 
-    // Disconnect any existing observer
+    // Clean up any existing observer
     if (observerRef.current) {
       observerRef.current.disconnect();
+      observerRef.current = null;
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !hasIntersected) {
+        if (entry.isIntersecting && !hasTriggeredRef.current) {
+          hasTriggeredRef.current = true;
           setIsIntersecting(true);
-          setHasIntersected(true);
-          // Disconnect the observer after first intersection
+          // Immediately disconnect to prevent any further triggers
           observer.disconnect();
+          observerRef.current = null;
         }
       },
       {
@@ -39,9 +41,10 @@ export function useIntersectionObserver<T extends HTMLElement = HTMLElement>(opt
     return () => {
       if (observerRef.current) {
         observerRef.current.disconnect();
+        observerRef.current = null;
       }
     };
-  }, [hasIntersected, options]);
+  }, [options]);
 
   return { elementRef, isIntersecting };
 } 
