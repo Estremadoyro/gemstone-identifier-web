@@ -21,7 +21,7 @@ User-agent: Discord
 Allow: /
 
 # Sitemap
-Sitemap: https://gemstone-identifier.com/sitemap.xml
+Sitemap: https://gemstoneidentifier.app/sitemap.xml
 
 # Crawl-delay for social media bots
 Crawl-delay: 1 
