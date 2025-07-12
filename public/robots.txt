@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+
+# Allow social media crawlers
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+User-agent: Discord
+Allow: /
+
+# Sitemap
+Sitemap: https://gemstone-identifier.com/sitemap.xml
+
+# Crawl-delay for social media bots
+Crawl-delay: 1 
