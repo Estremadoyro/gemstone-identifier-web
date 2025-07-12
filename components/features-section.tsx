@@ -8,6 +8,7 @@ import {
   Database,
   BookOpen,
 } from "lucide-react";
+import { useState, useEffect } from "react";
 
 import {
   Card,
@@ -18,9 +19,25 @@ import {
 } from "@/components/ui/card";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
+// Detect Safari browser
+const isSafari = () => {
+  if (typeof window === "undefined") return false;
+  const userAgent = navigator.userAgent;
+  return (
+    /^((?!chrome|android).)*safari/i.test(userAgent) ||
+    (userAgent.includes("Safari") && !userAgent.includes("Chrome"))
+  );
+};
+
 export function FeaturesSection() {
   const { elementRef, isIntersecting } =
     useIntersectionObserver<HTMLDivElement>();
+  const [isSafariBrowser, setIsSafariBrowser] = useState(false);
+
+  // Detect Safari on client side
+  useEffect(() => {
+    setIsSafariBrowser(isSafari());
+  }, []);
 
   const features = [
     {
@@ -59,7 +76,11 @@ export function FeaturesSection() {
         <div
           ref={elementRef}
           className={`flex flex-col items-center justify-center space-y-4 text-center transition-all duration-1000 ${
-            isIntersecting ? "animate-slide-up" : "opacity-0 translate-y-[30px]"
+            isSafariBrowser
+              ? ""
+              : isIntersecting
+              ? "animate-slide-up"
+              : "opacity-0 translate-y-[30px]"
           }`}
         >
           <div className="space-y-2">
@@ -82,9 +103,16 @@ export function FeaturesSection() {
               <Card
                 key={index}
                 className={`border-primary/20 bg-card/80 backdrop-blur-sm hover-lift transition-all duration-700 ${
-                  isIntersecting ? "animate-scale-in" : "opacity-0 scale-90"
+                  isSafariBrowser
+                    ? ""
+                    : isIntersecting
+                    ? "animate-scale-in"
+                    : "opacity-0 scale-90"
                 }`}
-                style={{ animationDelay: `${index * 0.1}s` }}
+                style={{
+                  animationDelay: isSafariBrowser ? "0s" : `${index * 0.1}s`,
+                  animationFillMode: "forwards",
+                }}
               >
                 <CardHeader className="pb-2">
                   <div className="hover-scale">

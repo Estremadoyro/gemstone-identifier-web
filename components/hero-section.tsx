@@ -2,14 +2,31 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
 import { AppStoreBadge } from "@/components/app-store-badge";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
+// Detect Safari browser
+const isSafari = () => {
+  if (typeof window === "undefined") return false;
+  const userAgent = navigator.userAgent;
+  return (
+    /^((?!chrome|android).)*safari/i.test(userAgent) ||
+    (userAgent.includes("Safari") && !userAgent.includes("Chrome"))
+  );
+};
+
 export function HeroSection() {
   const { elementRef, isIntersecting } =
     useIntersectionObserver<HTMLDivElement>();
+  const [isSafariBrowser, setIsSafariBrowser] = useState(false);
+
+  // Detect Safari on client side
+  useEffect(() => {
+    setIsSafariBrowser(isSafari());
+  }, []);
 
   return (
     <section className="relative py-12 md:py-20 lg:py-28 overflow-hidden bg-gradient-to-b from-secondary/50 to-background">
@@ -18,7 +35,9 @@ export function HeroSection() {
           <div
             ref={elementRef}
             className={`flex flex-col justify-center space-y-4 transition-all duration-1000 ${
-              isIntersecting
+              isSafariBrowser
+                ? ""
+                : isIntersecting
                 ? "animate-slide-in-left"
                 : "opacity-0 translate-x-[-30px]"
             }`}
@@ -43,7 +62,9 @@ export function HeroSection() {
               </Link>
               <p
                 className={`max-w-[600px] text-muted-foreground text-sm sm:text-base md:text-xl transition-all duration-700 delay-200 ${
-                  isIntersecting
+                  isSafariBrowser
+                    ? ""
+                    : isIntersecting
                     ? "animate-slide-up"
                     : "opacity-0 translate-y-[30px]"
                 }`}
@@ -54,7 +75,9 @@ export function HeroSection() {
               </p>
               <div
                 className={`flex flex-col sm:flex-row sm:items-center gap-3 mt-4 transition-all duration-700 delay-300 ${
-                  isIntersecting
+                  isSafariBrowser
+                    ? ""
+                    : isIntersecting
                     ? "animate-slide-up"
                     : "opacity-0 translate-y-[30px]"
                 }`}
@@ -83,7 +106,9 @@ export function HeroSection() {
             </div>
             <div
               className={`flex flex-row flex-wrap gap-3 transition-all duration-700 delay-400 ${
-                isIntersecting
+                isSafariBrowser
+                  ? ""
+                  : isIntersecting
                   ? "animate-slide-up"
                   : "opacity-0 translate-y-[30px]"
               }`}
@@ -106,7 +131,9 @@ export function HeroSection() {
           </div>
           <div
             className={`relative mt-4 lg:mt-0 mx-auto lg:mx-0 max-w-[350px] lg:max-w-none transition-all duration-1000 delay-200 ${
-              isIntersecting
+              isSafariBrowser
+                ? ""
+                : isIntersecting
                 ? "animate-slide-in-right"
                 : "opacity-0 translate-x-[30px]"
             }`}
