@@ -253,7 +253,7 @@ export default function RootLayout({
           property="og:image:secure_url"
           content="https://gemstoneidentifier.app/app-icon.jpg"
         />
-        <meta name="apple-itunes-app" content="app-id=6627335358"></meta>
+        <meta name="apple-itunes-app" content="app-id=6627335358" />
       </head>
       <body className={inter.className}>
         <ThemeProvider
