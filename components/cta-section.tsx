@@ -43,7 +43,7 @@ export function CTASection() {
         >
           <div className="space-y-2">
             <h2
-              className={`text-3xl font-bold tracking-tighter md:text-4xl/tight transition-all duration-700 delay-200 ${
+              className={`text-3xl font-bold text-white tracking-tighter md:text-4xl/tight transition-all duration-700 delay-200 ${
                 isSafariBrowser
                   ? ""
                   : isIntersecting
@@ -54,7 +54,7 @@ export function CTASection() {
               Start identifying your gemstones today
             </h2>
             <p
-              className={`max-w-[900px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed transition-all duration-700 delay-300 ${
+              className={`max-w-[900px] text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed transition-all duration-700 delay-300 ${
                 isSafariBrowser
                   ? ""
                   : isIntersecting

@@ -258,6 +258,7 @@ export default function RootLayout({
           property="og:image:secure_url"
           content="https://gemstoneidentifier.app/app-icon.jpg"
         />
+        <meta name="apple-itunes-app" content="app-id=id6627335358"></meta>
       </head>
       <body className={inter.className}>
         <ThemeProvider
@@ -267,6 +268,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <Analytics />
         </ThemeProvider>
         <SpeedInsights />
       </body>
