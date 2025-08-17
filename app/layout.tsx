@@ -31,7 +31,9 @@ export const metadata: Metadata = {
     shortcut: "/app-icon.jpg",
   },
   keywords: [
+    "gemstone identifier app",
     "gemstone identifier",
+    "gemstone",
     "gemstone recognition",
     "AI gemstone identification",
     "gemstone app",
@@ -39,18 +41,11 @@ export const metadata: Metadata = {
     "precious stones",
     "gemstone catalog",
     "gemstone value",
-    "diamond identification",
-    "sapphire recognition",
-    "ruby identification",
-    "emerald recognition",
     "gemstone collection",
     "jewelry app",
-    "gemstone database",
     "gemstone scanner",
     "gemstone analyzer",
-    "precious stone identifier",
     "gemstone expert",
-    "jewelry valuation",
   ],
   authors: [{ name: "Gemstone Identifier Team" }],
   creator: "Gemstone Identifier",
@@ -258,7 +253,7 @@ export default function RootLayout({
           property="og:image:secure_url"
           content="https://gemstoneidentifier.app/app-icon.jpg"
         />
-        <meta name="apple-itunes-app" content="app-id=id6627335358"></meta>
+        <meta name="apple-itunes-app" content="app-id=6627335358"></meta>
       </head>
       <body className={inter.className}>
         <ThemeProvider
